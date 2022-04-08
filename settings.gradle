@@ -1,0 +1,16 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "RickAndMortyTestApp"
+include ':app'
+include ':core'
+include ':core:ui'
+include ':sign-up-log-in'
+include ':main'
+include ':utils'
+include ':character'

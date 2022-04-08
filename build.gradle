@@ -1,0 +1,77 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')) {
+            android {
+                compileSdkVersion Config.compileSdk
+                buildToolsVersion Config.buildTools
+
+                defaultConfig {
+                    if (project.name == "app")
+                        applicationId Config.applicationId
+
+                    minSdkVersion Config.minSdk
+                    targetSdkVersion Config.targetSdk
+                    versionCode Releases.versionCode
+                    versionName Releases.versionName
+                    multiDexEnabled true
+
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                }
+
+                compileOptions {
+                    sourceCompatibility Config.javaVersion
+                    targetCompatibility Config.javaVersion
+                }
+
+                buildTypes {
+                    release {
+                        minifyEnabled false
+                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                    }
+                }
+
+                buildFeatures {
+                    dataBinding true
+                }
+
+                kotlinOptions {
+                    jvmTarget = Config.javaVersion
+                }
+            }
+
+            dependencies {
+                constraints {
+                    //Test
+                    testImplementation TestImpl.junit
+                    androidTestImplementation TestImpl.runner
+                    androidTestImplementation TestImpl.espresso
+
+                    //Kotlin
+                    implementation Kotlin.core
+                    implementation Kotlin.stdlib
+                    implementation Kotlin.coroutinesCore
+                    implementation Kotlin.coroutinesAndroid
+                }
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

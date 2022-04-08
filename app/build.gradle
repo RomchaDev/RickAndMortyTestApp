@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+dependencies {
+
+    //Project
+    implementation project(Modules.core)
+    implementation project(Modules.character)
+    implementation project(Modules.utils)
+    implementation project(Modules.main)
+    implementation project(Modules.signUpLogIn)
+
+    //Navigation
+    implementation Navigation.navigationFragment
+    implementation Navigation.navigationUiKtx
+
+    //Multidex
+    implementation Tools.multidex
+
+    //Kotlin
+    implementation Kotlin.core
+
+    //Koin
+    implementation Koin.koinCore
+    implementation Koin.koinAndroid
+    implementation Koin.koinViewModel
+
+    //Design
+    implementation Design.appcompat
+    implementation Design.material
+    implementation Design.constraintLayout
+
+    //Test
+    testImplementation TestImpl.junit
+    androidTestImplementation TestImpl.ext
+
+    //Retrofit
+    implementation Retrofit.retrofit
+    implementation Retrofit.converterGson
+    implementation Retrofit.adapterCoroutines
+}

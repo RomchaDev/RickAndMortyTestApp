@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+dependencies {
+
+    //Project
+    implementation project(Modules.utils)
+
+    //Kotlin
+    implementation Kotlin.core
+
+    //Koin
+    implementation Koin.koinCore
+    implementation Koin.koinAndroid
+    implementation Koin.koinViewModel
+
+    //Design
+    implementation Design.appcompat
+    implementation Design.material
+    implementation Design.constraintLayout
+
+    //Navigation
+    implementation Navigation.navigationFragment
+
+    //DataStore
+    implementation DataStore.dataStore
+    implementation DataStore.preferences
+
+    //Json
+    implementation Retrofit.converterGson
+
+    //Test
+    testImplementation TestImpl.junit
+    androidTestImplementation TestImpl.ext
+}

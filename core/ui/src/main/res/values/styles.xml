@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Widget.RickAndMortyTestApp.Button" parent="Widget.AppCompat.Button.Colored">
+    <style name="Widget.RickAndMortyTestApp.Button.Contained" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">@dimen/corner_radius_medium</item>
+        <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle</item>
+    </style>
 
+    <style name="Widget.RickAndMortyTestApp.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/corner_radius_medium</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle</item>
+    </style>
+
+    <style name="Widget.RickAndMortyTestApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:drawableTint">@color/start_icon_text_color</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="Widget.RickAndMortyTestApp.TextInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.InputTextStyle</item>
+        <item name="android:textColorHint">@color/hint</item>
     </style>
 </resources>

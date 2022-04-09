@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance.RickAndMortyTestApp.BigHeaderText" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white_main</item>
+        <item name="android:fontFamily">@font/gilroy_bold</item>
+    </style>
+
+    <style name="TextAppearance.RickAndMortyTestApp.SmallHeaderText" parent="TextAppearance.RickAndMortyTestApp.BigHeaderText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/gilroy_semi_bold</item>
+    </style>
+
+    <style name="TextAppearance.RickAndMortyTestApp.BigContentText" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white_main</item>
+        <item name="android:fontFamily">@font/gilroy_regular</item>
+    </style>
+
+    <style name="TextAppearance.RickAndMortyTestApp.InputTextStyle" parent="TextAppearance.RickAndMortyTestApp.BigContentText">
+        <item name="android:textColor">@color/white_absolute</item>
+    </style>
+
+    <style name="TextAppearance.RickAndMortyTestApp.SmallContentText" parent="TextAppearance.RickAndMortyTestApp.BigContentText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/hint</item>
+    </style>
+
+    <style name="TextAppearance.RickAndMortyTestApp.ButtonTextStyle" parent="TextAppearance.RickAndMortyTestApp.InputTextStyle">
+        <item name="android:fontFamily">@font/gilroy_bold</item>
+    </style>
+</resources>

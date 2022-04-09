@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/RickAndMortyTestApp/app/src/main/res/layout/activity_main.xml" value="0.6" />
+        <entry key="..\:/RickAndMortyTestApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/RickAndMortyTestApp/core/ui/src/main/res/drawable/bg_button_contained.xml" value="0.26205128205128203" />
         <entry key="..\:/RickAndMortyTestApp/core/ui/src/main/res/drawable/bg_edit_text.xml" value="0.2078125" />
+        <entry key="..\:/RickAndMortyTestApp/sign-up-log-in/src/main/res/drawable/ic_email.xml" value="0.22412280701754386" />
       </map>
     </option>
   </component>

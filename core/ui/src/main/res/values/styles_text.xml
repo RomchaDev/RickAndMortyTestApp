@@ -27,7 +27,8 @@
         <item name="android:textColor">@color/hint</item>
     </style>
 
-    <style name="TextAppearance.RickAndMortyTestApp.ButtonTextStyle" parent="TextAppearance.RickAndMortyTestApp.InputTextStyle">
-        <item name="android:fontFamily">@font/gilroy_bold</item>
+    <style name="TextAppearance.RickAndMortyTestApp.ButtonTextStyle" parent="TextAppearance.RickAndMortyTestApp.BigContentText">
+        <item name="fontFamily">@font/gilroy_regular</item>
+        <item name="android:textColor">@color/white_absolute</item>
     </style>
 </resources>

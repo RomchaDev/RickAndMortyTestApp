@@ -4,17 +4,20 @@
     <style name="Widget.RickAndMortyTestApp.Button.Contained" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">@dimen/corner_radius_medium</item>
         <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle</item>
+        <item name="android:textColor">@null</item>
     </style>
 
     <style name="Widget.RickAndMortyTestApp.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="cornerRadius">@dimen/corner_radius_medium</item>
         <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="android:textColor">@null</item>
         <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle</item>
     </style>
 
     <style name="Widget.RickAndMortyTestApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:background">@drawable/bg_edit_text</item>
-        <item name="android:drawableTint">@color/start_icon_text_color</item>
+        <item name="startIconTint">@color/hint</item>
+        <item name="android:layout_height">48dp</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintEnabled">false</item>
@@ -22,6 +25,11 @@
 
     <style name="Widget.RickAndMortyTestApp.TextInputEditText" parent="Widget.AppCompat.EditText">
         <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.InputTextStyle</item>
+        <item name="android:textColor">@color/white_absolute</item>
         <item name="android:textColorHint">@color/hint</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:drawablePadding">-8dp</item>
+        <item name="android:paddingBottom">0dp</item>
     </style>
 </resources>

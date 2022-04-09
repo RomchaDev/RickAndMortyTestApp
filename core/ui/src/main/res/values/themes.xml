@@ -14,8 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="materialButtonStyle">@style/Widget.RickAndMortyTestApp.Button.Contained</item>
         <item name="materialButtonOutlinedStyle">@style/Widget.RickAndMortyTestApp.Button.Outlined</item>
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox</item>
-        <item name="editTextStyle">@style/Widget.RickAndMortyTestApp.TextInputEditText</item>
+
     </style>
 
     <style name="Base.Theme.RickAndMortyTestApp" parent="Base.V24.Theme.RickAndMortyTestApp" />

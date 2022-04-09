@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/state_sign_in"
+        motion:constraintSetStart="@id/state_sign_up"
+        motion:duration="250" />
+
+
+    <Transition
+        motion:constraintSetEnd="@+id/state_sign_up"
+        motion:constraintSetStart="@+id/state_sign_in"
+        motion:duration="250" />
+
+    <ConstraintSet android:id="@+id/state_sign_up" />
+
+    <ConstraintSet android:id="@+id/state_sign_in">
+
+        <Constraint
+            android:id="@+id/btn_sign_up"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_widget_height"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="@dimen/margin_button_bottom"
+            android:alpha="0"
+            android:elevation="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/btn_sign_in"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_widget_height"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="@dimen/margin_button_top"
+            android:alpha="1"
+            android:elevation="2dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/layout_action_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_action_top"
+            android:alpha="0"
+            android:elevation="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/layout_action_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_action_bottom"
+            android:alpha="1"
+            android:elevation="2dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+
+        <Constraint
+            android:id="@+id/tl_email"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_widget_height"
+            motion:layout_constraintBottom_toTopOf="@id/btn_sign_in"
+            motion:layout_constraintEnd_toEndOf="@id/btn_sign_up"
+            motion:layout_constraintStart_toStartOf="@id/btn_sign_up" />
+    </ConstraintSet>
+
+</MotionScene>

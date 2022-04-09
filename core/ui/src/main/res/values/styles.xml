@@ -5,10 +5,12 @@
         <item name="cornerRadius">@dimen/corner_radius_medium</item>
         <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle</item>
         <item name="android:textColor">@null</item>
+        <item name="android:layout_height">@dimen/default_widget_height</item>
     </style>
 
     <style name="Widget.RickAndMortyTestApp.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="cornerRadius">@dimen/corner_radius_medium</item>
+        <item name="android:layout_height">@dimen/default_widget_height</item>
         <item name="strokeColor">?attr/colorPrimary</item>
         <item name="android:textColor">@null</item>
         <item name="android:textAppearance">@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle</item>
@@ -17,7 +19,7 @@
     <style name="Widget.RickAndMortyTestApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="startIconTint">@color/hint</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">@dimen/default_widget_height</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintEnabled">false</item>

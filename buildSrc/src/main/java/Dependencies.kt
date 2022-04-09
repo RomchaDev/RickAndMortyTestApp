@@ -134,4 +134,5 @@ object Modules {
     const val main = ":main"
     const val signUpLogIn = ":sign-up-log-in"
     const val utils = ":utils"
+    const val coreUi = ":core:ui"
 }

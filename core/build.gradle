@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'com.google.secrets_gradle_plugin' version '0.6.1'
 }
 
 dependencies {
@@ -29,8 +30,11 @@ dependencies {
     implementation DataStore.dataStore
     implementation DataStore.preferences
 
-    //Json
+    //Retrofit
     implementation Retrofit.converterGson
+    implementation Retrofit.flowAdapter
+    implementation Retrofit.retrofit
+    implementation Retrofit.loggingInterceptor
 
     //Test
     testImplementation TestImpl.junit

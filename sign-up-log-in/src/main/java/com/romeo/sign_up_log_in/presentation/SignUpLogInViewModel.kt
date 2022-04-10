@@ -1,15 +1,44 @@
 package com.romeo.sign_up_log_in.presentation
 
+import androidx.databinding.ObservableField
+import com.romeo.core.data.repository.TokenRepository
 import com.romeo.core.presentation.BaseViewModel
+import com.romeo.sign_up_log_in.domain.usecase.SignInArgument
+import com.romeo.sign_up_log_in.domain.usecase.SignInUseCase
+import com.romeo.sign_up_log_in.domain.usecase.SignUpArgument
+import com.romeo.sign_up_log_in.domain.usecase.SignUpUseCase
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 
-class SignUpLogInViewModel : BaseViewModel<SignUpLogInViewState>() {
+class SignUpLogInViewModel(
+    private val signUpUseCase: SignUpUseCase,
+    private val signInUseCase: SignInUseCase,
+    private val tokenRepository: TokenRepository
+) : BaseViewModel<SignUpLogInViewState>() {
+
+    val email = ObservableField("")
+    val password = ObservableField("")
 
     override fun onViewInit() {
         runAsync {
-            delay(LAUNCH_TIME)
-            emitSuccess(SignUpLogInViewState.SIGN_UP)
+            tokenRepository.get().collect { token ->
+                token?.let {
+                    emitMessage("Welcome")
+                } ?: run {
+                    print(token)
+                    delay(LAUNCH_TIME)
+                    emitSuccess(SignUpLogInViewState.SIGN_UP)
+                }
+
+                delay(LAUNCH_TIME)
+                emitSuccess(SignUpLogInViewState.SIGN_UP)
+            }
         }
+    }
+
+    override fun handleError(error: Throwable) {
+        super.handleError(error)
+        print(error.message)
     }
 
     fun onSignUpToLogInPressed() {
@@ -21,14 +50,20 @@ class SignUpLogInViewModel : BaseViewModel<SignUpLogInViewState>() {
     }
 
     fun onSignUpPressed() {
-        emitMessage("Sign Up")
+        if (!email.get().isNullOrEmpty() && password.get() != null)
+            runAsync {
+                signUpUseCase.execute(SignUpArgument(email.get()!!, password.get()!!))
+            }
     }
 
     fun onLogInPressed() {
-        emitMessage("Log In")
+        if (!email.get().isNullOrEmpty() && password.get() != null)
+            runAsync {
+                signInUseCase.execute(SignInArgument(email.get()!!, password.get()!!))
+            }
     }
 
     companion object {
-        private const val LAUNCH_TIME = 1000L
+        private const val LAUNCH_TIME = 2000L
     }
 }

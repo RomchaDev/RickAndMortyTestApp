@@ -61,6 +61,8 @@ class SignUpLogInFragment :
         initTextInputs()
         binding.btnSignUp.setActive(false)
         binding.btnSignIn.setActive(false)
+
+        binding.viewModel = viewModel
     }
 
     override fun renderSuccess(data: SignUpLogInViewState) {

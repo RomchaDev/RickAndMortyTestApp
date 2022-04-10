@@ -34,7 +34,7 @@ object Versions {
     const val retrofit = "2.9.0"
     const val converterGson = "2.9.0"
     const val interceptor = "3.12.1"
-    const val adapterCoroutines = "0.9.2"
+    const val flowAdapter = "1.0.0"
 
     //Glide
     const val glide = "4.9.0"
@@ -85,8 +85,8 @@ object Kotlin {
 object Retrofit {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.converterGson}"
-    const val adapterCoroutines =
-        "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.adapterCoroutines}"
+    const val flowAdapter =
+        "tech.thdev:flow-call-adapter-factory:${Versions.flowAdapter}"
     const val loggingInterceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.interceptor}"
 }

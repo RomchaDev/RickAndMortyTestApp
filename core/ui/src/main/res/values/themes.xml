@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="materialButtonStyle">@style/Widget.RickAndMortyTestApp.Button.Contained</item>
         <item name="materialButtonOutlinedStyle">@style/Widget.RickAndMortyTestApp.Button.Outlined</item>
-
+        <item name="android:textViewStyle">@style/Widget.RickAndMortyTestApp.TextView</item>
     </style>
 
     <style name="Base.Theme.RickAndMortyTestApp" parent="Base.V24.Theme.RickAndMortyTestApp" />

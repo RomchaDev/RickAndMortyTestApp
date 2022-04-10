@@ -4,18 +4,18 @@
     <style name="TextAppearance.RickAndMortyTestApp.BigHeaderText" parent="TextAppearance.MaterialComponents.Headline3">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/white_main</item>
-        <item name="android:fontFamily">@font/gilroy_bold</item>
+        <item name="fontFamily">@font/gilroy_bold</item>
     </style>
 
     <style name="TextAppearance.RickAndMortyTestApp.SmallHeaderText" parent="TextAppearance.RickAndMortyTestApp.BigHeaderText">
         <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/gilroy_semi_bold</item>
+        <item name="fontFamily">@font/gilroy_semi_bold</item>
     </style>
 
     <style name="TextAppearance.RickAndMortyTestApp.BigContentText" parent="TextAppearance.MaterialComponents.Headline3">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white_main</item>
-        <item name="android:fontFamily">@font/gilroy_regular</item>
+        <item name="fontFamily">@font/gilroy_regular</item>
     </style>
 
     <style name="TextAppearance.RickAndMortyTestApp.InputTextStyle" parent="TextAppearance.RickAndMortyTestApp.BigContentText">

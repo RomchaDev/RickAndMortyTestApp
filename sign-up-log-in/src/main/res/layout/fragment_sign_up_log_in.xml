@@ -8,14 +8,108 @@
         android:background="@color/black_main"
         app:layoutDescription="@xml/fragment_sign_up_log_in_scene">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_background"
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_launch"
+            app:layout_constraintBottom_toBottomOf="@id/btn_sign_up" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_welcome_back"
+            style="@style/TextAppearance.RickAndMortyTestApp.BigHeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:text="@string/welcome_back"
+            app:layout_constraintStart_toStartOf="@id/tv_welcome"
+            app:layout_constraintTop_toTopOf="@id/tv_welcome" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_log_in"
+            style="@style/TextAppearance.RickAndMortyTestApp.SmallContentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:text="@string/log_in_to_your_account"
+            app:layout_constraintStart_toStartOf="@id/tv_create_account"
+            app:layout_constraintTop_toTopOf="@id/tv_create_account" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:alpha="0"
+            android:animateLayoutChanges="true"
+            android:text="@string/welcome"
+            android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.BigHeaderText"
+            app:layout_constraintBottom_toTopOf="@id/tv_create_account"
+            app:layout_constraintStart_toStartOf="@id/tv_create_account" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:alpha="0"
+            android:text="@string/create_an_account_to_get_started"
+            android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.SmallContentText"
+            app:layout_constraintBottom_toTopOf="@id/tl_email"
+            app:layout_constraintStart_toStartOf="@id/tl_email" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_email"
             style="@style/Widget.RickAndMortyTestApp.TextInputLayout"
             android:layout_width="0dp"
-            android:layout_height="@dimen/default_widget_height"
+            android:layout_height="@dimen/default_input_layout_height"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:alpha="0"
+            app:layout_constraintBottom_toTopOf="@id/tl_password"
+            app:layout_constraintEnd_toEndOf="@id/btn_sign_up"
+            app:layout_constraintStart_toStartOf="@id/btn_sign_up"
+            app:startIconDrawable="@drawable/ic_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/Widget.RickAndMortyTestApp.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/your_email"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_password"
+            style="@style/Widget.RickAndMortyTestApp.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_input_layout_height"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:alpha="0"
             app:layout_constraintBottom_toTopOf="@id/btn_sign_up"
             app:layout_constraintEnd_toEndOf="@id/btn_sign_up"
-            app:layout_constraintStart_toStartOf="@id/btn_sign_up" />
+            app:layout_constraintStart_toStartOf="@id/btn_sign_up"
+            app:startIconDrawable="@drawable/ic_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:inputType="textPassword"
+                style="@style/Widget.RickAndMortyTestApp.TextInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/your_password" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_sign_up"
@@ -24,6 +118,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="@dimen/margin_button_top"
+            android:alpha="0"
             android:text="@string/sign_up"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_action_bottom"
+            android:alpha="0"
             android:elevation="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

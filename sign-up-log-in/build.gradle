@@ -7,6 +7,7 @@ dependencies {
 
     //Project
     implementation project(Modules.core)
+    implementation project(Modules.coreUi)
     implementation project(Modules.utils)
 
     //Kotlin
@@ -35,4 +36,9 @@ dependencies {
     //Test
     testImplementation TestImpl.junit
     androidTestImplementation TestImpl.ext
+
+    def htextview_version = "0.1.6"
+    implementation "com.hanks:htextview-base:$htextview_version"        // base library
+
+    implementation "com.hanks:htextview-fade:$htextview_version"        // optional
 }

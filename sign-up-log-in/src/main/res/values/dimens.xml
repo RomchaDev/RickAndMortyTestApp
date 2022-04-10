@@ -5,4 +5,5 @@
 
     <dimen name="margin_button_top">100dp</dimen>
     <dimen name="margin_action_top">120dp</dimen>
+    <dimen name="margin_small">26dp</dimen>
 </resources>

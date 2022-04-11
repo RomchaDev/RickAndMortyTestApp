@@ -14,10 +14,14 @@ class CharacterRepositoryImpl(
 ) : CharacterRepository {
     private var characters: List<Character>? = null
 
-    override suspend fun getAll(update: Boolean): Flow<List<Character>> {
+    override suspend fun getAll(
+        page: Int,
+        pageSize: Int,
+        update: Boolean
+    ): Flow<List<Character>> {
         return if (update)
             try {
-                remoteDatasource.getAllCharacters().apply {
+                remoteDatasource.getAllCharacters(page, pageSize).apply {
                     characters = single()
                 }
             } catch (e: UnknownHostException) {

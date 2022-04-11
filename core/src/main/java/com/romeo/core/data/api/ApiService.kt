@@ -5,10 +5,7 @@ import com.romeo.core.data.api.dto.TokenDTO
 import com.romeo.core.domain.entity.SignInEntity
 import com.romeo.core.domain.entity.SignUpEntity
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -19,10 +16,15 @@ interface ApiService {
     fun signIn(@Body signInEntity: SignInEntity): Flow<TokenDTO>
 
     @GET("$API_VERSION/post/list")
-    fun getAllCharacters(): Flow<List<CharacterDTO>>
+    fun getAllCharacters(
+        @Query("page") page: Int,
+        @Query("page_size") pageSize: Int
+    ): Flow<List<CharacterDTO>>
 
     @GET("$API_VERSION/post/{id}")
-    fun getCharacter(@Path("id") id: Int): Flow<CharacterDTO>
+    fun getCharacter(
+        @Path("id") id: Int
+    ): Flow<CharacterDTO>
 
     companion object {
         private const val API_VERSION = "v0"

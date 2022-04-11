@@ -5,7 +5,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterRemoteDatasource {
 
-    fun getAllCharacters(): Flow<List<Character>>
+    fun getAllCharacters(
+        page: Int,
+        pageSize: Int
+    ): Flow<List<Character>>
 
     fun getCharacter(id: Int): Flow<Character>
 }

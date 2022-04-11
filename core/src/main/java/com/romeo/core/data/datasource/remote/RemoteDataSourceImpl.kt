@@ -20,8 +20,11 @@ class RemoteDataSourceImpl(
         return apiService.signIn(signInEntity)
     }
 
-    override fun getAllCharacters(): Flow<List<Character>> {
-        return apiService.getAllCharacters().map {
+    override fun getAllCharacters(
+        page: Int,
+        pageSize: Int
+    ): Flow<List<Character>> {
+        return apiService.getAllCharacters(page, pageSize).map {
             it.map { char -> Character.fromDTO(char) }
         }
     }

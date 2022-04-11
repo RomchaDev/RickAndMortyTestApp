@@ -5,6 +5,7 @@ import com.romeo.core.koin.apiModule
 import com.romeo.core.koin.constantsModule
 import com.romeo.core.koin.coreModule
 import com.romeo.sign_up_log_in.koin.signUpLogInModule
+import io.realm.Realm
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -22,5 +23,7 @@ class App : MultiDexApplication() {
                 constantsModule
             )
         }
+
+        Realm.init(this)
     }
 }

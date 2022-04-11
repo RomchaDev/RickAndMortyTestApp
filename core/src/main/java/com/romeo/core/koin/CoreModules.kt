@@ -9,6 +9,7 @@ import com.romeo.core.data.datasource.remote.RemoteDataSourceImpl
 import com.romeo.core.data.datasource.remote.RemoteDatasource
 import com.romeo.core.data.repository.TokenRepository
 import com.romeo.core.data.repository.TokenRepositoryImpl
+import io.realm.RealmConfiguration
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.StringQualifier
@@ -51,3 +52,13 @@ val apiModule = module {
             .build().create(ApiService::class.java)
     }
 }
+
+val realmModule = module {
+    single {
+        RealmConfiguration.Builder()
+            .schemaVersion(DB_VERSION)
+            .build()
+    }
+}
+
+private const val DB_VERSION = 1L

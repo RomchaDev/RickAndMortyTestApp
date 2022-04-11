@@ -13,10 +13,13 @@ import okhttp3.ResponseBody
 import java.io.IOException
 
 class MainInterceptor(
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: TokenRepository,
+    private val networkManager: NetworkManager
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response = runBlocking {
+
+        if (!networkManager.isNetworkAvailable()) throw NoInternetException("ups")
 
         val token = tokenRepository.get().take(1).single()
 

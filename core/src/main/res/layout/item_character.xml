@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.romeo.core.domain.entity.Character" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="@dimen/margin_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
         android:background="@color/black_main">
 
         <androidx.cardview.widget.CardView
@@ -43,22 +44,23 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
-                android:text="@{data.title}"
                 android:layout_height="wrap_content"
+                android:text="@{data.title}"
                 android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.SmallHeaderText"
                 tools:text="Rick Sanchez" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
-                android:text="@{data.subtitle}"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:text="@{data.subtitle}"
                 android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.SmallContentText"
                 tools:text="Alive" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"

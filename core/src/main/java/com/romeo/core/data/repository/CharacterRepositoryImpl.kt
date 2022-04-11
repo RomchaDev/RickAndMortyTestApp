@@ -5,8 +5,7 @@ import com.romeo.core.data.local.dao.CharacterDAO
 import com.romeo.core.domain.entity.Character
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
-import java.net.UnknownHostException
+import kotlinx.coroutines.flow.single
 
 class CharacterRepositoryImpl(
     private val remoteDatasource: CharacterRemoteDatasource,
@@ -19,18 +18,14 @@ class CharacterRepositoryImpl(
         pageSize: Int,
         update: Boolean
     ): Flow<List<Character>> {
-        return if (update)
+        return if (update) {
             try {
-                remoteDatasource.getAllCharacters(page, pageSize).map {
-                    characters = it
-                    localDatasource.putAll(it)
-                    characters!!
-                }
-            } catch (e: UnknownHostException) {
+                characters = remoteDatasource.getAllCharacters(page, pageSize).single()
+                flowOf(characters!!)
+            } catch (t: Throwable) {
                 flowOfLocals()
             }
-        else
-            flowOfLocals()
+        } else flowOfLocals()
     }
 
     private suspend fun flowOfLocals() = flowOf(

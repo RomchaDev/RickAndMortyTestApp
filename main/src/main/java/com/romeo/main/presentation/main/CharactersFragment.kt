@@ -2,6 +2,7 @@ package com.romeo.main.presentation.main
 
 import android.os.Bundle
 import android.view.View
+import com.romeo.core.databinding.ItemCharacterBinding
 import com.romeo.core.domain.entity.Character
 import com.romeo.core.presentation.BaseFragment
 import com.romeo.core.presentation.list.MainListAdapter
@@ -23,8 +24,15 @@ class CharactersFragment :
         adapter = MainListAdapter(
             MainListAdapter.oneItemMap(R.layout.item_character)
         ) { binding, data ->
+
+            binding as ItemCharacterBinding
+
             binding.root.setOnClickListener {
                 viewModel.onItemPressed(data.id)
+            }
+
+            binding.ivHeart.setOnClickListener {
+                viewModel.onLikePressed(data.id)
             }
         }
 

@@ -3,6 +3,8 @@ package com.romeo.core.koin
 import com.romeo.core.data.PrivateConstantsHolder
 import com.romeo.core.data.api.ApiService
 import com.romeo.core.data.api.MainInterceptor
+import com.romeo.core.data.api.NetworkManager
+import com.romeo.core.data.api.NetworkManagerImpl
 import com.romeo.core.data.datasource.local.LocalDatasource
 import com.romeo.core.data.datasource.local.LocalDatasourceImpl
 import com.romeo.core.data.datasource.remote.CharacterRemoteDatasource
@@ -15,7 +17,6 @@ import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.data.repository.CharacterRepositoryImpl
 import com.romeo.core.data.repository.TokenRepository
 import com.romeo.core.data.repository.TokenRepositoryImpl
-import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
@@ -33,8 +34,9 @@ val coreModule = module {
     factory<CharacterRemoteDatasource> { get<RemoteDatasource>() }
 
     single<LocalDatasource> { LocalDatasourceImpl(get()) }
+    factory<NetworkManager> { NetworkManagerImpl(get()) }
 
-    factory<CharacterRepository> { CharacterRepositoryImpl(get(), get()) }
+    single<CharacterRepository> { CharacterRepositoryImpl(get(), get()) }
     factory<TokenRepository> {
         TokenRepositoryImpl(
             get(),
@@ -43,7 +45,7 @@ val coreModule = module {
     }
 
     factory { PrivateConstantsHolder() }
-    factory<CharacterDAO> { CharacterDAOImpl(get(),get(StringQualifier(DB_DISPATCHER))) }
+    factory<CharacterDAO> { CharacterDAOImpl(get(), get(StringQualifier(DB_DISPATCHER))) }
 }
 
 val constantsModule = module {
@@ -55,7 +57,7 @@ val constantsModule = module {
 val apiModule = module {
     single {
         val client = OkHttpClient.Builder()
-            .addInterceptor(MainInterceptor(get()))
+            .addInterceptor(MainInterceptor(get(), get()))
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
 
@@ -75,7 +77,6 @@ val realmModule = module {
             .build()
 
         configuration
-        //Realm.getInstance(configuration)
     }
 }
 

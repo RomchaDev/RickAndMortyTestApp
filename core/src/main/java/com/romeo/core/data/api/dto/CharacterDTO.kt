@@ -2,22 +2,13 @@ package com.romeo.core.data.api.dto
 
 import com.google.gson.annotations.SerializedName
 import com.romeo.core.domain.entity.Character
-import com.romeo.core.presentation.list.Content
-import com.romeo.core.presentation.list.ListItemId
 
 data class CharacterDTO(
-    @ListItemId val id: Int,
-    @Content val title: String,
-    @Content val subtitle: String,
-
-    @Content
-    @SerializedName("image")
-    val imageUrl: String,
-
-    @Content
-    @SerializedName("favorite")
-    val isFavorite: Boolean,
-
+    val id: Int,
+    val title: String,
+    val subtitle: String,
+    @SerializedName("image") val imageUrl: String,
+    @SerializedName("favorite") val isFavorite: Boolean,
     val description: String?
 ) {
     companion object {

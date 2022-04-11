@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/signUpLogInFragment"
         android:name="com.romeo.sign_up_log_in.presentation.SignUpLogInFragment"
-        android:label="SignUpLogInFragment" />
+        android:label="SignUpLogInFragment" >
+        <action
+            android:id="@id/action_login_to_main"
+            app:destination="@id/charactersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.romeo.main.presentation.view.main.CharactersFragment"
+        android:label="CharactersFragment" />
 </navigation>

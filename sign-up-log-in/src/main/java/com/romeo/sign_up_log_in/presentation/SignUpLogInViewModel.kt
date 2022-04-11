@@ -7,13 +7,15 @@ import com.romeo.sign_up_log_in.domain.usecase.SignInArgument
 import com.romeo.sign_up_log_in.domain.usecase.SignInUseCase
 import com.romeo.sign_up_log_in.domain.usecase.SignUpArgument
 import com.romeo.sign_up_log_in.domain.usecase.SignUpUseCase
+import com.romeo.sign_up_log_in.presentation.navigation.LogInToMainDirections
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 
 class SignUpLogInViewModel(
     private val signUpUseCase: SignUpUseCase,
     private val signInUseCase: SignInUseCase,
-    private val tokenRepository: TokenRepository
+    private val tokenRepository: TokenRepository,
+    private val mainDirections: LogInToMainDirections
 ) : BaseViewModel<SignUpLogInViewState>() {
 
     val email = ObservableField("")
@@ -50,10 +52,11 @@ class SignUpLogInViewModel(
     }
 
     fun onSignUpPressed() {
-        if (!email.get().isNullOrEmpty() && password.get() != null)
+/*        if (!email.get().isNullOrEmpty() && password.get() != null)
             runAsync {
                 signUpUseCase.execute(SignUpArgument(email.get()!!, password.get()!!))
-            }
+            }*/
+        navigateTo(mainDirections)
     }
 
     fun onLogInPressed() {

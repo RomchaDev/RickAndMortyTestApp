@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <extra
+        name="action_login_to_main"
+        value="@+id/action_login_to_main" />
+</resources>

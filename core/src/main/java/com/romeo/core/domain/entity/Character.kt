@@ -2,15 +2,18 @@ package com.romeo.core.domain.entity
 
 import com.romeo.core.data.api.dto.CharacterDTO
 import com.romeo.core.data.local.entity.CharacterLocal
+import com.romeo.core.presentation.list.Content
+import com.romeo.core.presentation.list.ListItem
+import com.romeo.core.presentation.list.ListItemId
 
 data class Character(
-    val id: Int,
-    val title: String,
-    val subtitle: String,
-    val imageUrl: String,
-    val isFavorite: Boolean,
-    val description: String?
-) {
+    @ListItemId val id: Int,
+    @Content val title: String,
+    @Content val subtitle: String,
+    @Content val imageUrl: String,
+    @Content val isFavorite: Boolean,
+    @Content val description: String?
+) : ListItem<Character> {
     companion object {
         fun fromDTO(characterDTO: CharacterDTO) =
             with(characterDTO) {

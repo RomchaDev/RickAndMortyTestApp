@@ -12,4 +12,6 @@ interface CharacterRepository {
 
     suspend fun getFavorites(): Flow<List<Character>>
     suspend fun getOne(id: Int): Flow<Character?>
+    suspend fun addToFavorites(char: Character)
+    suspend fun removeFromFavorites(char: Character)
 }

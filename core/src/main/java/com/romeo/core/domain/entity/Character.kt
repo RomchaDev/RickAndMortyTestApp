@@ -11,7 +11,7 @@ data class Character(
     @Content val title: String,
     @Content val subtitle: String,
     @Content val imageUrl: String,
-    @Content val isFavorite: Boolean,
+    @Content var isFavorite: Boolean,
     @Content val description: String?
 ) : ListItem<Character> {
     companion object {

@@ -12,7 +12,7 @@ class CharacterDAOImpl(
     private val dispatcher: CoroutineDispatcher
 ) : CharacterDAO {
 
-    val realm get() = Realm.getInstance(configuration)
+    private val realm get() = Realm.getInstance(configuration)
 
     override suspend fun getFavorites(): List<Character> {
         val res = mutableListOf<Character>()
@@ -68,7 +68,7 @@ class CharacterDAOImpl(
 
     override suspend fun put(data: Character) {
         realm.executeTransactionAwait(dispatcher) { transaction ->
-            transaction.insert(CharacterLocal.fromDomain(data))
+            transaction.insertOrUpdate(CharacterLocal.fromDomain(data))
         }
     }
 }

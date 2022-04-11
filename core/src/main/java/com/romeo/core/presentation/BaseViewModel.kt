@@ -77,7 +77,7 @@ abstract class BaseViewModel<D : AppStateEntity> : ViewModel() {
             block()
         }
 
-    protected fun emitSuccess(entity: D) = runAsync {
+    protected fun emitSuccess(entity: D) = runOnMainThread {
         mDataFlow.emit(AppState.Success(entity))
     }
 

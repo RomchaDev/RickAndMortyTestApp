@@ -3,9 +3,7 @@ package com.romeo.core.data.repository
 import com.romeo.core.data.datasource.remote.CharacterRemoteDatasource
 import com.romeo.core.data.local.dao.CharacterDAO
 import com.romeo.core.domain.entity.Character
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.*
 
 class CharacterRepositoryImpl(
     private val remoteDatasource: CharacterRemoteDatasource,
@@ -20,8 +18,18 @@ class CharacterRepositoryImpl(
     ): Flow<List<Character>> {
         return if (update) {
             try {
-                characters = remoteDatasource.getAllCharacters(page, pageSize).single()
-                flowOf(characters!!)
+                val values = remoteDatasource.getAllCharacters(page, pageSize).single()
+
+                flowOfLocals().collect()
+
+                characters?.forEach { old ->
+                    val new = values.find { it.id == old.id }
+                    new?.apply {
+                        isFavorite = old.isFavorite
+                    }
+                }
+
+                flowOf(values)
             } catch (t: Throwable) {
                 flowOfLocals()
             }
@@ -40,5 +48,17 @@ class CharacterRepositoryImpl(
 
     override suspend fun getOne(id: Int): Flow<Character?> {
         return flowOf(localDatasource.get(id))
+    }
+
+    override suspend fun addToFavorites(char: Character) {
+        char.isFavorite = true
+        localDatasource.put(char)
+        characters?.find { it.id == char.id }?.isFavorite = true
+    }
+
+    override suspend fun removeFromFavorites(char: Character) {
+        char.isFavorite = false
+        localDatasource.put(char)
+        characters?.find { it.id == char.id }?.isFavorite = false
     }
 }

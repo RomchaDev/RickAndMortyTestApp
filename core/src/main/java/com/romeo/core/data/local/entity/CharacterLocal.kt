@@ -5,14 +5,35 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.Required
 
-open class CharacterLocal(
-    @PrimaryKey val id: Int,
-    @Required val title: String,
-    @Required val subtitle: String,
-    @Required val imageUrl: String,
-    @Required val isFavorite: Boolean,
-    @Required val description: String?
-) : RealmObject() {
+open class CharacterLocal() : RealmObject() {
+
+    @PrimaryKey
+    var id: Int = 0
+    @Required
+    var title: String = ""
+    @Required
+    var subtitle: String = ""
+    @Required
+    var imageUrl: String = ""
+    var isFavorite: Boolean = false
+    var description: String? = null
+
+    constructor(
+        id: Int,
+        title: String,
+        subtitle: String,
+        imageUrl: String,
+        isFavorite: Boolean,
+        description: String?
+    ) : this() {
+        this.id = id
+        this.title = title
+        this.subtitle = subtitle
+        this.imageUrl = imageUrl
+        this.isFavorite = isFavorite
+        this.description = description
+    }
+
     companion object {
         fun fromDomain(character: Character) =
             with(character) {

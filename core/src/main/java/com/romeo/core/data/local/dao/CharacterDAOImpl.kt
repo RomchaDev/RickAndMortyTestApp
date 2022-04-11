@@ -27,6 +27,19 @@ class CharacterDAOImpl(
         return res
     }
 
+    override suspend fun get(id: Int): Character? {
+        var char: CharacterLocal? = null
+
+        realm.executeTransactionAwait { transaction ->
+            char = transaction
+                .where(CharacterLocal::class.java)
+                .equalTo("isFavorite", true)
+                .findFirst()
+        }
+
+        return char?.let { Character.fromLocal(it) }
+    }
+
     override suspend fun getAll(): List<Character> {
         val res = mutableListOf<Character>()
 

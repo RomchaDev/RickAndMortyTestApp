@@ -1,3 +1,5 @@
+package com.romeo.core.presentation.view
+
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.romeo.core.data.image.GlideImageLoader

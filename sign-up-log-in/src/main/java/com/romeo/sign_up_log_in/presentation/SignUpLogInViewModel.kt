@@ -25,15 +25,12 @@ class SignUpLogInViewModel(
         runAsync {
             tokenRepository.get().collect { token ->
                 token?.let {
-                    emitMessage("Welcome")
+                    navigateTo(mainDirections)
                 } ?: run {
                     print(token)
                     delay(LAUNCH_TIME)
                     emitSuccess(SignUpLogInViewState.SIGN_UP)
                 }
-
-                delay(LAUNCH_TIME)
-                emitSuccess(SignUpLogInViewState.SIGN_UP)
             }
         }
     }

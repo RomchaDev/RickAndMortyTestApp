@@ -74,7 +74,8 @@ val realmModule = module {
             .schemaVersion(DB_VERSION)
             .build()
 
-        Realm.getInstance(configuration)
+        configuration
+        //Realm.getInstance(configuration)
     }
 }
 

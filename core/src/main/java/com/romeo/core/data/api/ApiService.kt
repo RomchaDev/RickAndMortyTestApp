@@ -1,6 +1,7 @@
 package com.romeo.core.data.api
 
 import com.romeo.core.data.api.dto.CharacterDTO
+import com.romeo.core.data.api.dto.CharactersResponse
 import com.romeo.core.data.api.dto.TokenDTO
 import com.romeo.core.domain.entity.SignInEntity
 import com.romeo.core.domain.entity.SignUpEntity
@@ -19,7 +20,7 @@ interface ApiService {
     fun getAllCharacters(
         @Query("page") page: Int,
         @Query("page_size") pageSize: Int
-    ): Flow<List<CharacterDTO>>
+    ): Flow<CharactersResponse>
 
     @GET("$API_VERSION/post/{id}")
     fun getCharacter(

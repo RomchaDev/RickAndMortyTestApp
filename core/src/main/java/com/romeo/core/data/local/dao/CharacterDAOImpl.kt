@@ -3,13 +3,16 @@ package com.romeo.core.data.local.dao
 import com.romeo.core.data.local.entity.CharacterLocal
 import com.romeo.core.domain.entity.Character
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.CoroutineDispatcher
 
 class CharacterDAOImpl(
-    private val realm: Realm,
+    private val configuration: RealmConfiguration,
     private val dispatcher: CoroutineDispatcher
 ) : CharacterDAO {
+
+    val realm get() = Realm.getInstance(configuration)
 
     override suspend fun getFavorites(): List<Character> {
         val res = mutableListOf<Character>()

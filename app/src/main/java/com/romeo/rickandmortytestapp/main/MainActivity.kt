@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.itemIconTintList = null
 
         navController.addOnDestinationChangedListener { _, dest, _ ->
-            dest.parent?.id?.let { id ->
+            dest.id.let { id ->
                 if (id == R.id.charactersFragment ||
                     id == R.id.favoritesFragment
                 )

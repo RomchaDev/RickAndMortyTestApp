@@ -25,7 +25,7 @@ class RemoteDataSourceImpl(
         pageSize: Int
     ): Flow<List<Character>> {
         return apiService.getAllCharacters(page, pageSize).map {
-            it.map { char -> Character.fromDTO(char) }
+            it.results.map { char -> Character.fromDTO(char) }
         }
     }
 

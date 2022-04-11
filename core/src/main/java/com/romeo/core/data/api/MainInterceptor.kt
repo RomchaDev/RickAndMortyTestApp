@@ -22,7 +22,7 @@ class MainInterceptor(
 
         val newRequest = token?.let {
             chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer $token")
+                .addHeader("Authorization", "Token $token")
                 .build()
         } ?: chain.request()
 

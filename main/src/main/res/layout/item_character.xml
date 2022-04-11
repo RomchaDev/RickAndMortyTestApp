@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.romeo.core.domain.entity.Character" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_main">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_image_container"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:cardCornerRadius="@dimen/corner_radius_medium"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:loadImage="@{data.imageUrl}"
+                tools:src="@drawable/img_ex_item" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/card_image_container"
+            app:layout_constraintStart_toEndOf="@id/card_image_container"
+            app:layout_constraintTop_toTopOf="@id/card_image_container">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:text="@{data.title}"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.SmallHeaderText"
+                tools:text="Rick Sanchez" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:text="@{data.subtitle}"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.SmallContentText"
+                tools:text="Alive" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            app:favorite="@{data.isFavorite}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_like_filled" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/charactersFragment"
-        android:name="com.romeo.main.presentation.view.main.CharactersFragment"
+        android:name="com.romeo.main.presentation.main.CharactersFragment"
         android:label="CharactersFragment" />
 </navigation>

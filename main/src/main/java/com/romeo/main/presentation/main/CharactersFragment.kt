@@ -1,4 +1,4 @@
-package com.romeo.main.presentation.view.main
+package com.romeo.main.presentation.main
 
 import android.os.Bundle
 import android.view.View

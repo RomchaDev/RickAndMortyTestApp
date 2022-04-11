@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/RickAndMortyTestApp/app/src/main/res/drawable/characters_selector.xml" value="0.185" />
+        <entry key="..\:/RickAndMortyTestApp/app/src/main/res/drawable/favorites_selector.xml" value="0.185" />
         <entry key="..\:/RickAndMortyTestApp/app/src/main/res/layout/activity_main.xml" value="0.19736842105263158" />
+        <entry key="..\:/RickAndMortyTestApp/app/src/main/res/menu/main_bottom_menu.xml" value="0.175" />
         <entry key="..\:/RickAndMortyTestApp/app/src/main/res/xml/network_security_config.xml" value="0.1" />
+        <entry key="..\:/RickAndMortyTestApp/core/src/main/res/drawable/ic_like_filled.xml" value="0.203" />
         <entry key="..\:/RickAndMortyTestApp/core/src/main/res/xml/nav_ids.xml" value="0.13464912280701755" />
         <entry key="..\:/RickAndMortyTestApp/main/src/main/res/layout/fragment_characters.xml" value="0.2" />
         <entry key="..\:/RickAndMortyTestApp/main/src/main/res/layout/item_character.xml" value="0.264" />

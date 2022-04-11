@@ -9,11 +9,15 @@ import com.romeo.core.data.datasource.remote.CharacterRemoteDatasource
 import com.romeo.core.data.datasource.remote.RemoteDataSourceImpl
 import com.romeo.core.data.datasource.remote.RemoteDatasource
 import com.romeo.core.data.datasource.remote.SingUpSingInDatasource
+import com.romeo.core.data.local.dao.CharacterDAO
+import com.romeo.core.data.local.dao.CharacterDAOImpl
 import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.data.repository.CharacterRepositoryImpl
 import com.romeo.core.data.repository.TokenRepository
 import com.romeo.core.data.repository.TokenRepositoryImpl
+import io.realm.Realm
 import io.realm.RealmConfiguration
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.StringQualifier
@@ -39,6 +43,7 @@ val coreModule = module {
     }
 
     factory { PrivateConstantsHolder() }
+    factory<CharacterDAO> { CharacterDAOImpl(get(),get(StringQualifier(DB_DISPATCHER))) }
 }
 
 val constantsModule = module {
@@ -65,10 +70,17 @@ val apiModule = module {
 
 val realmModule = module {
     single {
-        RealmConfiguration.Builder()
+        val configuration = RealmConfiguration.Builder()
             .schemaVersion(DB_VERSION)
             .build()
+
+        Realm.getInstance(configuration)
     }
 }
 
+val dispatcherModule = module {
+    factory(StringQualifier(DB_DISPATCHER)) { Dispatchers.IO }
+}
+
 private const val DB_VERSION = 1L
+private const val DB_DISPATCHER = "DB_DISPATCHER"

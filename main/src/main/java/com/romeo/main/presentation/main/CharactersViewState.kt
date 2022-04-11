@@ -1,4 +1,4 @@
-package com.romeo.main.presentation.view.main
+package com.romeo.main.presentation.main
 
 import com.romeo.core.domain.entity.AppStateEntity
 import com.romeo.core.domain.entity.Character

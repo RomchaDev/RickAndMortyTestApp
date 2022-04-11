@@ -1,10 +1,8 @@
 package com.romeo.rickandmortytestapp
 
 import androidx.multidex.MultiDexApplication
-import com.romeo.core.koin.apiModule
-import com.romeo.core.koin.constantsModule
-import com.romeo.core.koin.coreModule
-import com.romeo.core.koin.realmModule
+import com.romeo.core.koin.*
+import com.romeo.main.koin.mainModule
 import com.romeo.sign_up_log_in.koin.signUpLogInModule
 import io.realm.Realm
 import org.koin.android.ext.koin.androidContext
@@ -22,7 +20,9 @@ class App : MultiDexApplication() {
                 coreModule,
                 apiModule,
                 constantsModule,
-                realmModule
+                realmModule,
+                mainModule,
+                dispatcherModule
             )
         }
 

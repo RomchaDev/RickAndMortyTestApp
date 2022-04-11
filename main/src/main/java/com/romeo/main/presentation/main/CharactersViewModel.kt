@@ -1,4 +1,4 @@
-package com.romeo.main.presentation.view.main
+package com.romeo.main.presentation.main
 
 import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.presentation.BaseViewModel

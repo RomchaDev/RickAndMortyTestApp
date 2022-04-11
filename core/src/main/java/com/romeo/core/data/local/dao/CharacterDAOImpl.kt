@@ -1,6 +1,5 @@
 package com.romeo.core.data.local.dao
 
-import com.romeo.core.data.api.dto.CharacterDTO
 import com.romeo.core.data.local.entity.CharacterLocal
 import com.romeo.core.domain.entity.Character
 import io.realm.Realm

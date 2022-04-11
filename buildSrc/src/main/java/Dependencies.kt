@@ -3,7 +3,7 @@ import org.gradle.api.JavaVersion
 object Config {
     const val applicationId = "com.romeo.rickandmortytestapp"
     const val compileSdk = 31
-    const val minSdk = 24
+    const val minSdk = 26
     const val targetSdk = 30
     const val kotlinVersion = "1.5.30"
     const val buildTools = "30.0.3"

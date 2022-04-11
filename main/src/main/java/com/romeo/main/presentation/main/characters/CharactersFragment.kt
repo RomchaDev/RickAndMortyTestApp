@@ -1,7 +1,8 @@
-package com.romeo.main.presentation.main
+package com.romeo.main.presentation.main.characters
 
 import com.romeo.core.databinding.ItemCharacterBinding
 import com.romeo.core.domain.entity.Character
+import com.romeo.main.presentation.main.AbstractCharactersFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CharactersFragment : AbstractCharactersFragment() {

@@ -1,8 +1,9 @@
-package com.romeo.main.presentation.main
+package com.romeo.main.presentation.main.characters
 
 import com.romeo.core.data.repository.CharacterRepository
-import com.romeo.core.domain.entity.Character
 import com.romeo.core.presentation.list.replace
+import com.romeo.main.presentation.main.AbstractCharactersViewModel
+import com.romeo.main.presentation.main.CharactersViewState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 

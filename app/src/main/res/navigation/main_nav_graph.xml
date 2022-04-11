@@ -16,4 +16,8 @@
         android:id="@+id/charactersFragment"
         android:name="com.romeo.main.presentation.main.CharactersFragment"
         android:label="CharactersFragment" />
+    <fragment
+        android:id="@id/favoritesFragment"
+        android:name="com.romeo.main.presentation.main.FavoritesFragment"
+        android:label="FavoritesFragment" />
 </navigation>

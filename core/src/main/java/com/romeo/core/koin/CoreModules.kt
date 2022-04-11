@@ -5,8 +5,12 @@ import com.romeo.core.data.api.ApiService
 import com.romeo.core.data.api.MainInterceptor
 import com.romeo.core.data.datasource.local.LocalDatasource
 import com.romeo.core.data.datasource.local.LocalDatasourceImpl
+import com.romeo.core.data.datasource.remote.CharacterRemoteDatasource
 import com.romeo.core.data.datasource.remote.RemoteDataSourceImpl
 import com.romeo.core.data.datasource.remote.RemoteDatasource
+import com.romeo.core.data.datasource.remote.SingUpSingInDatasource
+import com.romeo.core.data.repository.CharacterRepository
+import com.romeo.core.data.repository.CharacterRepositoryImpl
 import com.romeo.core.data.repository.TokenRepository
 import com.romeo.core.data.repository.TokenRepositoryImpl
 import io.realm.RealmConfiguration
@@ -19,15 +23,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 import tech.thdev.network.flowcalladapterfactory.FlowCallAdapterFactory
 
 val coreModule = module {
-    single<RemoteDatasource> { RemoteDataSourceImpl(get()) }
+    factory<RemoteDatasource> { RemoteDataSourceImpl(get()) }
+
+    factory<SingUpSingInDatasource> { get<RemoteDatasource>() }
+    factory<CharacterRemoteDatasource> { get<RemoteDatasource>() }
+
     single<LocalDatasource> { LocalDatasourceImpl(get()) }
 
+    factory<CharacterRepository> { CharacterRepositoryImpl(get(), get()) }
     factory<TokenRepository> {
         TokenRepositoryImpl(
             get(),
             get(StringQualifier(PrivateConstantsHolder.TOKEN_KEY_QUALIFIER))
         )
     }
+
     factory { PrivateConstantsHolder() }
 }
 

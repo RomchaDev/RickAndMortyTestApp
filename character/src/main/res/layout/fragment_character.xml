@@ -1,0 +1,170 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.romeo.core.domain.entity.Character" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_main"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black_main"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/black_main">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="24dp"
+                        android:src="@drawable/ic_arrow_back"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_page_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="20dp"
+                        android:text="@{character.title}"
+                        android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.BigHeaderText"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_back"
+                        app:layout_constraintStart_toEndOf="@id/iv_back"
+                        app:layout_constraintTop_toTopOf="@id/iv_back"
+                        tools:text="Rick Sanchez" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                app:loadImage="@{character.imageUrl}"
+                tools:src="@drawable/img_ex_char" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_bottom_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@{character.title}"
+                android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.BigHeaderText"
+                tools:text="Rick Sanchez" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:text="@{character.subtitle}"
+                android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.SmallContentText"
+                tools:text="Alive" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:lineSpacingExtra="4dp"
+                android:text="@{character.description}"
+                tools:text="@string/ex_description" />
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/coordinator_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/black_main"
+                app:cardCornerRadius="@dimen/corner_radius_medium"
+                app:layoutDescription="@xml/fragment_character_xml_coordinator_buttons_scene">
+
+                <View
+                    android:id="@+id/bg_add_to_fav"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_add_to_fav"
+                    android:elevation="0dp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_add_to_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:text="@string/add_to_favorites"
+                    android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_add_to_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_like_filled_white"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_add_to_fav"
+                    app:layout_constraintEnd_toStartOf="@id/tv_add_to_fav"
+                    app:layout_constraintTop_toTopOf="@id/tv_add_to_fav" />
+
+                <View
+                    android:id="@+id/bg_remove_from_fav"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0"
+                    android:background="@drawable/bg_remove_from_fav" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_remove_from_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0"
+                    android:text="@string/remove_from_favorites"
+                    android:textAppearance="@style/TextAppearance.RickAndMortyTestApp.ButtonTextStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_add_to_fav"
+                    app:layout_constraintEnd_toEndOf="@id/tv_add_to_fav"
+                    app:layout_constraintStart_toStartOf="@id/tv_add_to_fav"
+                    app:layout_constraintTop_toTopOf="@id/tv_add_to_fav" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_remove_from_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:alpha="0"
+                    android:src="@drawable/ic_like_border_purple"
+                    app:layout_constraintStart_toStartOf="@id/iv_add_to_fav"
+                    app:layout_constraintTop_toTopOf="@id/iv_add_to_fav"/>
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</layout>

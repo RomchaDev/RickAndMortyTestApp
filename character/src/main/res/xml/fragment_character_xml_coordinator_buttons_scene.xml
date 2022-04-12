@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/state_remove_from_fav"
+        motion:constraintSetStart="@id/state_add_to_fav"
+        motion:duration="250" />
+
+    <ConstraintSet android:id="@+id/state_add_to_fav" />
+
+    <ConstraintSet android:id="@+id/state_remove_from_fav">
+        <Constraint
+            android:id="@+id/bg_add_to_fav"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:elevation="0dp" />
+        <Constraint
+            android:id="@+id/bg_remove_from_fav"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/tv_add_to_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:alpha="0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/tv_remove_from_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1"
+            motion:layout_constraintBottom_toBottomOf="@id/tv_add_to_fav"
+            motion:layout_constraintEnd_toEndOf="@id/tv_add_to_fav"
+            motion:layout_constraintStart_toStartOf="@id/tv_add_to_fav"
+            motion:layout_constraintTop_toTopOf="@id/tv_add_to_fav" />
+        <Constraint
+            android:id="@+id/iv_add_to_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:alpha="0"
+            motion:layout_constraintBottom_toBottomOf="@id/tv_add_to_fav"
+            motion:layout_constraintEnd_toStartOf="@id/tv_remove_from_fav"
+            motion:layout_constraintTop_toTopOf="@id/tv_add_to_fav" />
+        <Constraint
+            android:id="@+id/iv_remove_from_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:alpha="1"
+            motion:layout_constraintBottom_toBottomOf="@id/tv_add_to_fav"
+            motion:layout_constraintEnd_toStartOf="@id/tv_remove_from_fav"
+            motion:layout_constraintTop_toTopOf="@id/tv_add_to_fav" />
+    </ConstraintSet>
+</MotionScene>

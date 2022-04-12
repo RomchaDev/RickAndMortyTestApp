@@ -9,14 +9,6 @@
         value="@+id/action_global_to_char" />
 
     <extra
-        name="action_characters_to_char"
-        value="@+id/action_characters_to_char" />
-
-    <extra
-        name="action_favorites_to_char"
-        value="@+id/action_favorites_to_char" />
-
-    <extra
-        name="action_global_to_char"
-        value="@+id/action_global_to_char" />
+        name="action_global_to_login"
+        value="@+id/action_global_to_login" />
 </resources>

@@ -4,6 +4,7 @@ import androidx.navigation.NavDirections
 
 sealed class NavigationCommand {
     data class To(val direction: NavDirections) : NavigationCommand()
+
     data class SetResult(
         val result: String,
         val key: String = DEFAULT_RESULT_KEY

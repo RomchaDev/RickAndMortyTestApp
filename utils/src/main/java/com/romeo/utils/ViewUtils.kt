@@ -17,13 +17,3 @@ fun <T> Flow<T>.launchWhenStarted(viewLifecycleOwner: LifecycleOwner, block: (T)
         }
     }
 }
-
-fun <T> Flow<T>.launchWhenCreated(lifecycleScope: LifecycleCoroutineScope, block: (T) -> Unit) {
-
-    lifecycleScope.launch {
-        collect { t ->
-            block(t)
-        }
-    }
-
-}

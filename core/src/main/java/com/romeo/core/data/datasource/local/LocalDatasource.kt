@@ -6,4 +6,5 @@ import kotlin.reflect.KClass
 interface LocalDatasource {
     fun <T : Any> get(keyStr: String, kClass: KClass<T>): Flow<T?>
     suspend fun <T> save(keyStr: String, value: T)
+    suspend fun remove(keyStr: String)
 }

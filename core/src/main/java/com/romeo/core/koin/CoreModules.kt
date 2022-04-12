@@ -17,6 +17,8 @@ import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.data.repository.CharacterRepositoryImpl
 import com.romeo.core.data.repository.TokenRepository
 import com.romeo.core.data.repository.TokenRepositoryImpl
+import com.romeo.core.presentation.navigation.global_actions.GlobalToCharDirections
+import com.romeo.core.presentation.navigation.global_actions.GlobalToLoginDirections
 import io.realm.RealmConfiguration
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
@@ -52,6 +54,11 @@ val constantsModule = module {
     factory(StringQualifier(PrivateConstantsHolder.TOKEN_KEY_QUALIFIER)) {
         get<PrivateConstantsHolder>().tokenKey
     }
+}
+
+val globalActionsModule = module {
+    factory { GlobalToCharDirections() }
+    factory { GlobalToLoginDirections() }
 }
 
 val apiModule = module {

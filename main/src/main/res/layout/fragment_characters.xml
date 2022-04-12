@@ -31,9 +31,12 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_log_out"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:scaleType="center"
                     android:src="@drawable/ic_log_out"
                     app:layout_constraintBottom_toBottomOf="@id/tv_page_header"
                     app:layout_constraintEnd_toEndOf="parent"

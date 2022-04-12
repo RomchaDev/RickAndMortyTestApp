@@ -24,7 +24,8 @@ class App : MultiDexApplication() {
                 realmModule,
                 mainModule,
                 dispatcherModule,
-                characterModule
+                characterModule,
+                globalActionsModule
             )
         }
 

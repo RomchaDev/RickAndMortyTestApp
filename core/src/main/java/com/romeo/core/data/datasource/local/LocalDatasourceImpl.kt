@@ -39,4 +39,10 @@ open class LocalDatasourceImpl(
             preferences[key]
         }
     }
+
+    override suspend fun remove(keyStr: String) {
+        context.dataStore.edit { preferences ->
+            preferences.remove(stringPreferencesKey(keyStr))
+        }
+    }
 }

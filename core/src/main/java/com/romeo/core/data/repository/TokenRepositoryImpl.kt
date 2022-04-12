@@ -15,11 +15,7 @@ class TokenRepositoryImpl(
     override fun get(): Flow<String?> {
         val res = token?.let {
             flowOf(it)
-        } ?: localDatasource.get(tokenKey, String::class)/*.apply {
-            onEach {
-                token = it
-            }
-        }*/
+        } ?: localDatasource.get(tokenKey, String::class)
 
         print(res)
 
@@ -29,5 +25,9 @@ class TokenRepositoryImpl(
     override suspend fun put(token: String) {
         this.token = token
         localDatasource.save(tokenKey, token)
+    }
+
+    override suspend fun remove() {
+        localDatasource.remove(tokenKey)
     }
 }

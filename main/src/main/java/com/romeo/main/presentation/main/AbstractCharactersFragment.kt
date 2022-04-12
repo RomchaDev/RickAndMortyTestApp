@@ -28,6 +28,10 @@ abstract class AbstractCharactersFragment :
             bindListItem(binding as ItemCharacterBinding, data)
         }
 
+        binding.ivLogOut.setOnClickListener {
+            viewModel.onLogOutPressed()
+        }
+
         binding.rvCharacters.adapter = charactersAdapter
     }
 

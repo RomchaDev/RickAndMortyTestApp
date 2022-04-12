@@ -11,6 +11,8 @@
         android:label="SignUpLogInFragment"
         tools:layout="@layout/fragment_sign_up_log_in">
         <action
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/signUpLogInFragment"
             android:id="@id/action_login_to_main"
             app:destination="@id/charactersFragment" />
     </fragment>
@@ -19,26 +21,20 @@
         android:id="@+id/charactersFragment"
         android:name="com.romeo.main.presentation.main.characters.CharactersFragment"
         android:label="CharactersFragment"
-        tools:layout="@layout/fragment_characters">
-        <action
-            android:id="@id/action_characters_to_char"
-            app:destination="@id/characterFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_characters"/>
     <fragment
         android:id="@id/favoritesFragment"
         android:name="com.romeo.main.presentation.main.favorites.FavoritesFragment"
         android:label="FavoritesFragment"
-        tools:layout="@layout/fragment_characters">
-        <action
-            android:id="@id/action_favorites_to_char"
-            app:destination="@id/characterFragment" />
-    </fragment>
-    <fragment
+        tools:layout="@layout/fragment_characters"/>
 
+    <fragment
         android:id="@+id/characterFragment"
         android:name="com.romeo.character.presentation.CharacterFragment"
         android:label="CharacterFragment"
         tools:layout="@layout/fragment_character" />
 
-    <action android:id="@id/action_global_to_char" app:destination="@id/characterFragment"/>
+    <action android:id="@id/action_global_to_char" app:destination="@id/characterFragment" />
+
+    <action android:id="@id/action_global_to_login" app:destination="@id/signUpLogInFragment"/>
 </navigation>

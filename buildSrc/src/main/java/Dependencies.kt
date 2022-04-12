@@ -60,6 +60,9 @@ object Versions {
 
     //Fragment ktx
     const val fragmentKtx = "1.4.1"
+
+    //Lifecycle
+    const val lifecycle = "2.4.1"
 }
 
 object Tools {
@@ -125,6 +128,10 @@ object DataStore {
 
 object FragmentKtx {
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+}
+
+object Lifecycle {
+    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 }
 
 object Modules {

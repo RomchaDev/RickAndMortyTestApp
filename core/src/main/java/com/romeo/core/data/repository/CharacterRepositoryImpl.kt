@@ -3,6 +3,7 @@ package com.romeo.core.data.repository
 import com.romeo.core.data.datasource.remote.CharacterRemoteDatasource
 import com.romeo.core.data.local.dao.CharacterDAO
 import com.romeo.core.domain.entity.Character
+import com.romeo.core.presentation.list.replace
 import kotlinx.coroutines.flow.*
 
 class CharacterRepositoryImpl(
@@ -43,7 +44,9 @@ class CharacterRepositoryImpl(
     )
 
     private suspend fun flowOfFavorites() = flowOf(
-        favorites ?: localDatasource.getFavorites().apply { favorites = toMutableList() }
+        favorites
+            ?: characters?.filter { it.isFavorite }?.apply { favorites = toMutableList() }
+            ?: localDatasource.getFavorites().apply { favorites = toMutableList() }
     )
 
     override suspend fun getFavorites(): Flow<List<Character>> {
@@ -51,8 +54,23 @@ class CharacterRepositoryImpl(
     }
 
     override suspend fun getOne(id: Int): Flow<Character?> {
-        return flowOfLocals().map { chars ->
-            chars.find { char -> id == char.id }
+        return flowOfLocals().map { list ->
+            val item = list.find { it.id == id }
+
+            return@map item?.description?.let {
+                item
+            } ?: run {
+                val netItem = remoteDatasource.getCharacter(id).single()
+
+                val ind = characters?.indexOfFirst { it.id == id }
+                ind?.let {
+                    characters?.replace(ind, netItem)
+                }
+
+                localDatasource.put(netItem)
+
+                netItem
+            }
         }
     }
 

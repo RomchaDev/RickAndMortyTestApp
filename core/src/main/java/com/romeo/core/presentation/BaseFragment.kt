@@ -12,13 +12,11 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.romeo.core.domain.entity.AppStateEntity
 import com.romeo.core.presentation.navigation.NavigationCommand
-import com.romeo.utils.launchWhenCreated
 import com.romeo.utils.launchWhenStarted
 
 abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseViewModel<D>>(
@@ -47,18 +45,12 @@ abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseV
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.dataFlow.launchWhenStarted(lifecycleScope) { state ->
+        viewModel.dataFlow.launchWhenStarted(viewLifecycleOwner) { state ->
             renderData(state)
         }
 
-/*        viewModel.navigationFlow.launchWhenCreated(lifecycleScope) { command ->
-            command?.let {
-                renderNavigation(command)
-            }
-        }*/
-
-        viewModel.navigationFlow.subscribe {
-            renderNavigation(it)
+        viewModel.navigationFlow.launchWhenStarted(viewLifecycleOwner) { command ->
+            renderNavigation(command)
         }
 
         viewModel.onViewInit()
@@ -103,8 +95,6 @@ abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseV
     }
 
     private fun back(navController: NavController) {
-        val backQuery = navController.backQueue
-        print(backQuery.size)
         navController.navigateUp()
     }
 

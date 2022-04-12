@@ -39,6 +39,9 @@ dependencies {
     implementation Retrofit.retrofit
     implementation Retrofit.loggingInterceptor
 
+    //Lifecycle
+    implementation Lifecycle.lifecycle
+
     //Image
     implementation Glide.glide
     implementation Glide.glideCompiler

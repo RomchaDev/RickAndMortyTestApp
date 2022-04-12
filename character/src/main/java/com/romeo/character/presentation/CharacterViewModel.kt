@@ -33,8 +33,18 @@ class CharacterViewModel(
 
     fun onChangeFavoriteStatusPressed() {
         isFav?.let {
-            if (it) emitSuccess(CharacterViewState.ToRemoveFromFav)
-            else emitSuccess(CharacterViewState.ToAddToFav)
+            if (it) {
+                emitSuccess(CharacterViewState.ToAddToFav)
+                withItem { char ->
+                    repository.removeFromFavorites(char)
+                }
+
+            } else{
+                emitSuccess(CharacterViewState.ToRemoveFromFav)
+                withItem { char ->
+                    repository.addToFavorites(char)
+                }
+            }
 
             isFav = !it
         }

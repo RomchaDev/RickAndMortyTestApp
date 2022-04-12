@@ -3,4 +3,16 @@
     <extra
         name="action_login_to_main"
         value="@+id/action_login_to_main" />
+
+    <extra
+        name="action_global_to_char"
+        value="@+id/action_global_to_char" />
+
+    <extra
+        name="action_characters_to_char"
+        value="@+id/action_characters_to_char" />
+
+    <extra
+        name="action_favorites_to_char"
+        value="@+id/action_favorites_to_char" />
 </resources>

@@ -3,15 +3,13 @@ package com.romeo.core.data.repository
 import com.romeo.core.data.datasource.remote.CharacterRemoteDatasource
 import com.romeo.core.data.local.dao.CharacterDAO
 import com.romeo.core.domain.entity.Character
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.*
 
 class CharacterRepositoryImpl(
     private val remoteDatasource: CharacterRemoteDatasource,
     private val localDatasource: CharacterDAO
 ) : CharacterRepository {
+
     private var characters: List<Character>? = null
     private var favorites: MutableList<Character>? = null
 
@@ -53,7 +51,9 @@ class CharacterRepositoryImpl(
     }
 
     override suspend fun getOne(id: Int): Flow<Character?> {
-        return flowOf(localDatasource.get(id))
+        return flowOfLocals().map { chars ->
+            chars.find { char -> id == char.id }
+        }
     }
 
     override suspend fun addToFavorites(char: Character) {

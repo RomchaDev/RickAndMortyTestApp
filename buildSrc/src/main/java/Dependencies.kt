@@ -50,7 +50,7 @@ object Versions {
     const val koin = "2.2.3"
 
     //Navigation
-    const val navigation = "2.4.1"
+    const val navigation = "2.4.2"
 
     //DataBinding
     const val dataBindingCompiler = "3.2.0-alpha10"

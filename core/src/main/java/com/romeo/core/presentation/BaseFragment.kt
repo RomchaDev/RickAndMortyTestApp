@@ -14,6 +14,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.romeo.core.domain.entity.AppStateEntity
 import com.romeo.core.presentation.navigation.NavigationCommand
@@ -80,7 +81,7 @@ abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseV
         val navController = findNavController()
 
         when (command) {
-            is NavigationCommand.To -> navController.navigate(command.direction)
+            is NavigationCommand.To -> navigate(navController, command.direction)
             is NavigationCommand.Back -> back(navController)
             is NavigationCommand.SubscribeResult -> subscribeToNavigationResult(command.key)
             is NavigationCommand.SetResult -> setNavigationResult(
@@ -90,12 +91,12 @@ abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseV
         }
     }
 
+    private fun navigate(navController: NavController, direction: NavDirections) {
+        navController.navigate(direction)
+    }
+
     private fun back(navController: NavController) {
-        val stack = navController.backQueue
-        print(stack.size)
-        navController.previousBackStackEntry?.let { entery ->
-            navController.popBackStack(entery.destination.id, true)
-        }
+        navController.navigateUp()
     }
 
     override fun onDestroyView() {

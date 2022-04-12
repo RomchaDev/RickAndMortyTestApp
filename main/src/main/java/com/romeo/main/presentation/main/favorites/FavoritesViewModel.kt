@@ -4,15 +4,17 @@ import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.domain.entity.Character
 import com.romeo.main.presentation.main.AbstractCharactersViewModel
 import com.romeo.main.presentation.main.CharactersViewState
+import com.romeo.main.presentation.main.navigation.FavoritesToCharDirections
 import kotlinx.coroutines.flow.collect
 
 class FavoritesViewModel(
-    private val repository: CharacterRepository
-) : AbstractCharactersViewModel() {
+    override val charactersRepository: CharacterRepository,
+    characterDirections: FavoritesToCharDirections
+) : AbstractCharactersViewModel(characterDirections) {
 
     override fun update() {
         runAsync {
-            repository.getFavorites().collect { new ->
+            charactersRepository.getFavorites().collect { new ->
                 emitSuccess(CharactersViewState(new))
                 characters = new
             }
@@ -29,7 +31,7 @@ class FavoritesViewModel(
         emitSuccess(CharactersViewState(newList))
         characters = newList
         runAsync {
-            repository.removeFromFavorites(oldItem.copy())
+            charactersRepository.removeFromFavorites(oldItem.copy())
         }
     }
 }

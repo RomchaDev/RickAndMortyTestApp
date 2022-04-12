@@ -21,9 +21,9 @@ abstract class BaseViewModel<D : AppStateEntity> : ViewModel() {
     val dataFlow get() = mDataFlow.asSharedFlow()
 
     protected val mNavigationFlow = MutableSharedFlow<NavigationCommand>(
-        replay = 2,
+/*        replay = 1,
         extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.SUSPEND
+        onBufferOverflow = BufferOverflow.SUSPEND*/
     )
     val navigationFlow get() = mNavigationFlow.asSharedFlow()
 
@@ -91,11 +91,11 @@ abstract class BaseViewModel<D : AppStateEntity> : ViewModel() {
 
     protected fun navigateTo(
         directions: NavDirections,
-    ) = runAsync {
+    ) = runOnMainThread {
         mNavigationFlow.emit(NavigationCommand.To(directions))
     }
 
-    protected fun navigateBack() = runAsync {
+    protected fun navigateBack() = runOnMainThread {
         mNavigationFlow.emit(NavigationCommand.Back)
     }
 

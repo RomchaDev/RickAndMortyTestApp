@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/signUpLogInFragment">
 
     <fragment
         android:id="@+id/signUpLogInFragment"
         android:name="com.romeo.sign_up_log_in.presentation.SignUpLogInFragment"
-        android:label="SignUpLogInFragment" >
+        android:label="SignUpLogInFragment"
+        tools:layout="@layout/fragment_sign_up_log_in">
         <action
             android:id="@id/action_login_to_main"
             app:destination="@id/charactersFragment" />
     </fragment>
     <fragment
+
         android:id="@+id/charactersFragment"
         android:name="com.romeo.main.presentation.main.characters.CharactersFragment"
-        android:label="CharactersFragment" />
+        android:label="CharactersFragment"
+        tools:layout="@layout/fragment_characters">
+        <action
+            android:id="@id/action_characters_to_char"
+            app:destination="@id/characterFragment" />
+    </fragment>
     <fragment
         android:id="@id/favoritesFragment"
         android:name="com.romeo.main.presentation.main.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" />
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_characters">
+        <action
+            android:id="@id/action_favorites_to_char"
+            app:destination="@id/characterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterFragment"
+        android:name="com.romeo.character.presentation.CharacterFragment"
+        android:label="CharacterFragment"
+        tools:layout="@layout/fragment_character" />
 </navigation>

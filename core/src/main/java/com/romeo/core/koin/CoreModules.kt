@@ -27,7 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.thdev.network.flowcalladapterfactory.FlowCallAdapterFactory
 
-val coreModule = module {
+val dataModule = module {
     factory<RemoteDatasource> { RemoteDataSourceImpl(get()) }
 
     factory<SingUpSingInDatasource> { get<RemoteDatasource>() }

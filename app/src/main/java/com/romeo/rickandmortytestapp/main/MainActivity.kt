@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.romeo.rickandmortytestapp.R
 import com.romeo.rickandmortytestapp.databinding.ActivityMainBinding
 
@@ -38,5 +39,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.visibility =
             if (isVisible) View.VISIBLE
             else View.GONE
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.fragment_container)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

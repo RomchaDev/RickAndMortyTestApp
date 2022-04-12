@@ -1,11 +1,14 @@
 package com.romeo.core.domain.entity
 
+import android.os.Parcelable
 import com.romeo.core.data.api.dto.CharacterDTO
 import com.romeo.core.data.local.entity.CharacterLocal
 import com.romeo.core.presentation.list.Content
 import com.romeo.core.presentation.list.ListItem
 import com.romeo.core.presentation.list.ListItemId
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Character(
     @ListItemId val id: Int,
     @Content val title: String,
@@ -13,7 +16,7 @@ data class Character(
     @Content val imageUrl: String,
     @Content var isFavorite: Boolean,
     @Content val description: String?
-) : ListItem<Character> {
+) : ListItem<Character>, Parcelable {
     companion object {
         fun fromDTO(characterDTO: CharacterDTO) =
             with(characterDTO) {

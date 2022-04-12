@@ -4,12 +4,14 @@ import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.presentation.list.replace
 import com.romeo.main.presentation.main.AbstractCharactersViewModel
 import com.romeo.main.presentation.main.CharactersViewState
+import com.romeo.main.presentation.main.navigation.CharactersToCharDirections
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 
 class CharactersViewModel(
-    private val charactersRepository: CharacterRepository
-) : AbstractCharactersViewModel() {
+    override val charactersRepository: CharacterRepository,
+    characterDirections: CharactersToCharDirections
+) : AbstractCharactersViewModel(characterDirections) {
 
     override fun update() {
         runAsync {

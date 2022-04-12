@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import com.google.gson.Gson
 import com.romeo.core.domain.entity.AppStateEntity
+import com.romeo.core.presentation.navigation.MutableSimpleObservable
 import com.romeo.core.presentation.navigation.NavigationCommand
+import com.romeo.core.presentation.navigation.SimpleObservable
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
 abstract class BaseViewModel<D : AppStateEntity> : ViewModel() {
@@ -20,12 +23,15 @@ abstract class BaseViewModel<D : AppStateEntity> : ViewModel() {
     )
     val dataFlow get() = mDataFlow.asSharedFlow()
 
-    protected val mNavigationFlow = MutableSharedFlow<NavigationCommand>(
-/*        replay = 1,
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.SUSPEND*/
+/*    protected val mNavigationFlow = MutableSharedFlow<NavigationCommand?>(
+        replay = 0,
+        extraBufferCapacity = 0,
+        onBufferOverflow = BufferOverflow.SUSPEND
     )
-    val navigationFlow get() = mNavigationFlow.asSharedFlow()
+    val navigationFlow get() = mNavigationFlow.asSharedFlow()*/
+
+    protected val mNavigationFlow = MutableSimpleObservable<NavigationCommand>()
+    val navigationFlow get() = mNavigationFlow.toSimpleObservable()
 
     protected val ioCoroutineScope = CoroutineScope(
         Dispatchers.IO

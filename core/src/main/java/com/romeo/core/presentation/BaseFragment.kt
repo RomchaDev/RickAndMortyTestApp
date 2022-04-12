@@ -18,6 +18,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.romeo.core.domain.entity.AppStateEntity
 import com.romeo.core.presentation.navigation.NavigationCommand
+import com.romeo.utils.launchWhenCreated
 import com.romeo.utils.launchWhenStarted
 
 abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseViewModel<D>>(
@@ -50,8 +51,14 @@ abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseV
             renderData(state)
         }
 
-        viewModel.navigationFlow.launchWhenStarted(lifecycleScope) { command ->
-            renderNavigation(command)
+/*        viewModel.navigationFlow.launchWhenCreated(lifecycleScope) { command ->
+            command?.let {
+                renderNavigation(command)
+            }
+        }*/
+
+        viewModel.navigationFlow.subscribe {
+            renderNavigation(it)
         }
 
         viewModel.onViewInit()
@@ -96,6 +103,8 @@ abstract class BaseFragment<VB : ViewDataBinding, D : AppStateEntity, VM : BaseV
     }
 
     private fun back(navController: NavController) {
+        val backQuery = navController.backQueue
+        print(backQuery.size)
         navController.navigateUp()
     }
 

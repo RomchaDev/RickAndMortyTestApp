@@ -5,7 +5,9 @@ import com.romeo.core.presentation.list.replace
 import com.romeo.main.presentation.main.AbstractCharactersViewModel
 import com.romeo.main.presentation.main.CharactersViewState
 import com.romeo.main.presentation.main.navigation.CharactersToCharDirections
+import com.romeo.main.presentation.main.navigation.GlobalToCharDirections
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.dropWhile
 import kotlinx.coroutines.flow.take
 
 class CharactersViewModel(

@@ -15,4 +15,8 @@
     <extra
         name="action_favorites_to_char"
         value="@+id/action_favorites_to_char" />
+
+    <extra
+        name="action_global_to_char"
+        value="@+id/action_global_to_char" />
 </resources>

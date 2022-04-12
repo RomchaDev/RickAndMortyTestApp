@@ -34,8 +34,11 @@
             app:destination="@id/characterFragment" />
     </fragment>
     <fragment
+
         android:id="@+id/characterFragment"
         android:name="com.romeo.character.presentation.CharacterFragment"
         android:label="CharacterFragment"
         tools:layout="@layout/fragment_character" />
+
+    <action android:id="@id/action_global_to_char" app:destination="@id/characterFragment"/>
 </navigation>

@@ -17,3 +17,9 @@ data class FavoritesToCharDirections(
 ) : CharacterDirections {
     override val actionId: Int = R.id.action_favorites_to_char
 }
+
+data class GlobalToCharDirections(
+    override val arguments: Bundle = Bundle()
+) : CharacterDirections {
+    override val actionId: Int = R.id.action_global_to_char
+}

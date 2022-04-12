@@ -8,6 +8,7 @@ import android.view.View
 import androidx.lifecycle.LifecycleCoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 fun <T> Flow<T>.launchWhenStarted(lifecycleScope: LifecycleCoroutineScope, block: (T) -> Unit) {
     lifecycleScope.launchWhenStarted {
@@ -17,24 +18,12 @@ fun <T> Flow<T>.launchWhenStarted(lifecycleScope: LifecycleCoroutineScope, block
     }
 }
 
-fun Context.dip(value: Int) =
-    (value * resources.displayMetrics.density).toInt()
+fun <T> Flow<T>.launchWhenCreated(lifecycleScope: LifecycleCoroutineScope, block: (T) -> Unit) {
 
-fun View.animateViewHeight(start: Int, end: Int, duration: Long) {
-    val animator = ValueAnimator.ofInt(start, end)
-    animator.duration = duration
-    animator.addUpdateListener { anim ->
-        val h = anim.animatedValue as Int
-        layoutParams.height = h
-        println(h)
-        requestLayout()
-        if (h == 1) layoutParams.height = -3
+    lifecycleScope.launch {
+        collect { t ->
+            block(t)
+        }
     }
 
-    animator.start()
 }
-
-val Number.toPx get() = TypedValue.applyDimension(
-    TypedValue.COMPLEX_UNIT_DIP,
-    this.toFloat(),
-    Resources.getSystem().displayMetrics)

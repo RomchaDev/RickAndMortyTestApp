@@ -17,9 +17,6 @@ class CharacterFragment :
         R.layout.fragment_character
     ) {
 
-    private var isFav = false
-    private var char: Character? = null
-
     private val getImagesLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             try {
@@ -32,13 +29,6 @@ class CharacterFragment :
             }
         }
 
-    init {
-        char = arguments?.getParcelable(CHAR_KEY)
-        char?.let {
-            isFav = it.isFavorite
-        }
-    }
-
     override val viewModel: CharacterViewModel by viewModel {
         val char = arguments?.getParcelable<Character>(CHAR_KEY)
         parametersOf(char)
@@ -47,7 +37,7 @@ class CharacterFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        char?.let { binding.character = char }
+        arguments?.getParcelable<Character>(CHAR_KEY).let { binding.character = it }
 
         binding.bgAddToFav.setOnClickListener {
             viewModel.onChangeFavoriteStatusPressed()

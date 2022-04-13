@@ -11,10 +11,12 @@
         android:label="SignUpLogInFragment"
         tools:layout="@layout/fragment_sign_up_log_in">
         <action
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/signUpLogInFragment"
             android:id="@id/action_login_to_main"
-            app:destination="@id/charactersFragment" />
+            app:destination="@id/charactersFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/signUpLogInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
 
@@ -34,7 +36,11 @@
         android:label="CharacterFragment"
         tools:layout="@layout/fragment_character" />
 
-    <action android:id="@id/action_global_to_char" app:destination="@id/characterFragment" />
+    <action
+        android:id="@id/action_global_to_char"
+        app:destination="@id/characterFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim" />
 
     <action android:id="@id/action_global_to_login" app:destination="@id/signUpLogInFragment"/>
 </navigation>

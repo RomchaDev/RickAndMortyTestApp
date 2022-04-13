@@ -2,15 +2,13 @@ package com.romeo.main.presentation.main
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.annotation.CallSuper
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.romeo.core.databinding.ItemCharacterBinding
 import com.romeo.core.domain.entity.Character
 import com.romeo.core.presentation.BaseFragment
 import com.romeo.core.presentation.list.MainListAdapter
-import com.romeo.core.presentation.navigation.global_actions.GlobalToCharDirections
 import com.romeo.main.R
 import com.romeo.main.databinding.FragmentCharactersBinding
 
@@ -20,8 +18,14 @@ abstract class AbstractCharactersFragment :
     ) {
 
     private var charactersAdapter: MainListAdapter<Character>? = null
-    private var selectedItemBinding: ItemCharacterBinding? = null
-    private var imageTransitionName = ""
+
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return if (enter) {
+            AnimationUtils.loadAnimation(context, R.anim.nav_default_enter_anim)
+        } else {
+            AnimationUtils.loadAnimation(context, R.anim.nav_default_exit_anim)
+        }
+    }
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,29 +56,12 @@ abstract class AbstractCharactersFragment :
         binding.swipeToRefresh.isRefreshing = false
     }
 
-    override fun navigate(navController: NavController, direction: NavDirections) {
-        if (direction !is GlobalToCharDirections) {
-            super.navigate(navController, direction)
-            return
-        }
-
-        selectedItemBinding?.let { itemBinding ->
-            val extras = FragmentNavigatorExtras(
-                itemBinding.ivMain to imageTransitionName
-            )
-
-            navController.navigate(direction, extras)
-        }
-    }
-
     @CallSuper
     protected open fun bindListItem(pos: Int, binding: ItemCharacterBinding, data: Character) {
         binding.root.setOnClickListener {
             viewModel.onItemPressed(data.id)
         }
 
-        selectedItemBinding = binding
-        imageTransitionName = "trans_image_$pos"
         viewModel.onBindListItem(pos)
     }
 }

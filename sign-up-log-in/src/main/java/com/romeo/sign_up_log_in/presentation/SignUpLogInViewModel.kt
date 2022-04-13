@@ -49,11 +49,10 @@ class SignUpLogInViewModel(
     }
 
     fun onSignUpPressed() {
-/*        if (!email.get().isNullOrEmpty() && password.get() != null)
+        if (!email.get().isNullOrEmpty() && !password.get().isNullOrEmpty())
             runAsync {
                 signUpUseCase.execute(SignUpArgument(email.get()!!, password.get()!!))
-            }*/
-        navigateTo(mainDirections)
+            }
     }
 
     fun onLogInPressed() {

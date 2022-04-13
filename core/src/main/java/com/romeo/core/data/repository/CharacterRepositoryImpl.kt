@@ -24,7 +24,7 @@ class CharacterRepositoryImpl(
             try {
                 val values = remoteDatasource.getAllCharacters(page, pageSize).single()
 
-                flowOfLocals().collect()
+                updateCharactersFromDataBase()
 
                 characters?.forEach { old ->
                     val new = values.find { it.id == old.id }
@@ -44,6 +44,10 @@ class CharacterRepositoryImpl(
         characters ?: localDatasource.getAll().apply { characters = this }
     )
 
+    private suspend fun updateCharactersFromDataBase() {
+        flowOfLocals().collect()
+    }
+
     private suspend fun flowOfFavorites() = flowOf(
         favorites
             ?: characters?.filter { it.isFavorite }?.apply { favorites = toMutableList() }
@@ -62,6 +66,7 @@ class CharacterRepositoryImpl(
                 item
             } ?: run {
                 val netItem = remoteDatasource.getCharacter(id).single()
+                netItem.isFavorite = item?.isFavorite ?: false
 
                 val ind = characters?.indexOfFirst { it.id == id }
                 ind?.let {

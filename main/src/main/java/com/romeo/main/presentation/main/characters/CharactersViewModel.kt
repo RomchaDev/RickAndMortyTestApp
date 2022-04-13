@@ -22,10 +22,17 @@ class CharactersViewModel(
 
     override fun update() {
         runAsync {
-            charactersRepository.getAll(nextPage, INITIAL_CAPACITY).take(1).collect {
+            charactersRepository.getAll(nextPage, INITIAL_CAPACITY).take(1).collect { list ->
                 val newList = mutableListOf<Character>()
                 newList.addAll(characters)
-                newList.addAll(it)
+
+                list.forEach { char ->
+                    val old = newList.find { it.id == char.id }
+                    old?.apply {
+                        isFavorite = char.isFavorite
+                    } ?: newList.add(char)
+                }
+
                 emitSuccess(CharactersViewState(newList))
                 characters = newList
             }

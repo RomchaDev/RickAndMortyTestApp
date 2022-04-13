@@ -13,4 +13,5 @@
     <color name="purple_main">#AB7FF2</color>
     <color name="hint">#878388</color>
     <color name="grey_dark">#373637</color>
+    <color name="inactive_foreground">#80242325</color>
 </resources>

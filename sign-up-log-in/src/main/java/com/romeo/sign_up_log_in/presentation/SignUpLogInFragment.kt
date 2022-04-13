@@ -5,7 +5,9 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.textfield.TextInputLayout
 import com.romeo.core.presentation.BaseFragment
@@ -32,7 +34,8 @@ class SignUpLogInFragment :
                         binding.tlPassword.editText?.text.toString().isNotEmpty()
                 )
 
-        button.setActive(isActive)
+        binding.btnSignIn.setActive(isActive)
+        binding.btnSignUp.setActive(isActive)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -108,5 +111,12 @@ class SignUpLogInFragment :
     private fun Button.setActive(isActive: Boolean) {
         // alpha = if (isActive) 1f else 0.5f
         isClickable = isActive
+        val color =
+            if (isActive)
+                null
+            else
+                requireContext().getColor(R.color.inactive_foreground)
+
+        foreground = color?.toDrawable()
     }
 }

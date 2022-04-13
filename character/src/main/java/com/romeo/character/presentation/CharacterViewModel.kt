@@ -3,6 +3,8 @@ package com.romeo.character.presentation
 import com.romeo.core.data.repository.CharacterRepository
 import com.romeo.core.domain.entity.Character
 import com.romeo.core.presentation.BaseViewModel
+import kotlinx.coroutines.flow.collect
+import java.io.File
 
 class CharacterViewModel(
     private val repository: CharacterRepository,
@@ -47,6 +49,14 @@ class CharacterViewModel(
             }
 
             isFav = !it
+        }
+    }
+
+    fun onImageSelected(bytes: ByteArray) {
+        withItem { oldItem ->
+            repository.changeImage(oldItem.id, bytes).collect { newItem ->
+                emitSuccess(CharacterViewState.CharacterState(newItem))
+            }
         }
     }
 

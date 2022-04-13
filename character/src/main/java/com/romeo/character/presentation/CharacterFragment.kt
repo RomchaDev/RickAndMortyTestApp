@@ -2,11 +2,13 @@ package com.romeo.character.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import com.romeo.character.R
 import com.romeo.character.databinding.FragmentCharacterBinding
 import com.romeo.core.domain.entity.Character
 import com.romeo.core.presentation.BaseFragment
 import com.romeo.core.presentation.navigation.CHAR_KEY
+import com.romeo.utils.getByteArray
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -17,6 +19,18 @@ class CharacterFragment :
 
     private var isFav = false
     private var char: Character? = null
+
+    private val getImagesLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            try {
+                uri.getByteArray(requireContext())?.let {
+                    viewModel.onImageSelected(it)
+                }
+            } catch (e: NullPointerException) {
+                showMessage("Sorry, something went wrong")
+                e.printStackTrace()
+            }
+        }
 
     init {
         char = arguments?.getParcelable(CHAR_KEY)
@@ -45,6 +59,10 @@ class CharacterFragment :
 
         binding.ivBack.setOnClickListener {
             viewModel.onBackPressed()
+        }
+
+        binding.ivMain.setOnClickListener {
+            getImagesLauncher.launch("image/*")
         }
     }
 

@@ -7,6 +7,9 @@ import com.romeo.core.domain.entity.SignInEntity
 import com.romeo.core.domain.entity.SignUpEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import okhttp3.MediaType
+import okhttp3.RequestBody
+
 
 class RemoteDataSourceImpl(
     private val apiService: ApiService
@@ -31,5 +34,18 @@ class RemoteDataSourceImpl(
 
     override fun getCharacter(id: Int): Flow<Character> {
         return apiService.getCharacter(id).map { Character.fromDTO(it) }
+    }
+
+    override fun changeImage(id: Int, bytes: ByteArray): Flow<Character> {
+
+/*        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("image", bytes.toString())
+            .addFormDataPart("type", "image/jpg")
+            .build()*/
+
+        val requestBody = RequestBody.create(MediaType.parse("image/jpeg"), bytes)
+
+        return apiService.changeImage(id, requestBody)
     }
 }

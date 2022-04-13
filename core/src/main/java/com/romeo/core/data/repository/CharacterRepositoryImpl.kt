@@ -5,6 +5,7 @@ import com.romeo.core.data.local.dao.CharacterDAO
 import com.romeo.core.domain.entity.Character
 import com.romeo.core.presentation.list.replace
 import kotlinx.coroutines.flow.*
+import java.io.File
 
 class CharacterRepositoryImpl(
     private val remoteDatasource: CharacterRemoteDatasource,
@@ -86,5 +87,9 @@ class CharacterRepositoryImpl(
         localDatasource.put(char)
         characters?.find { it.id == char.id }?.isFavorite = false
         favorites?.removeIf { it.id == char.id }
+    }
+
+    override suspend fun changeImage(id: Int, bytes: ByteArray): Flow<Character> {
+        return remoteDatasource.changeImage(id, bytes)
     }
 }

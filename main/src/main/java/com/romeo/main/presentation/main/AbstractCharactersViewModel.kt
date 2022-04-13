@@ -17,7 +17,7 @@ abstract class AbstractCharactersViewModel(
 
     protected abstract val charactersRepository: CharacterRepository
 
-    protected var characters = listOf<Character>()
+    protected var characters = mutableListOf<Character>()
 
     override fun onViewInit() {
         update()
@@ -40,4 +40,6 @@ abstract class AbstractCharactersViewModel(
     }
 
     abstract fun update()
+    open fun onBindListItem(pos: Int){
+    }
 }

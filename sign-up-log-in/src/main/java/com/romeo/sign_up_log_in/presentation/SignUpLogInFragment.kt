@@ -5,7 +5,6 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.widget.addTextChangedListener
@@ -21,22 +20,7 @@ class SignUpLogInFragment :
     ) {
 
     override val viewModel: SignUpLogInViewModel by viewModel()
-    private var currentSceneId: Int = R.id.state_sign_up
-
-    private val checkTextsBlock = {
-        val button = if (currentSceneId == R.id.state_sign_up)
-            binding.btnSignUp
-        else
-            binding.btnSignIn
-
-        val isActive = (
-                binding.tlEmail.editText?.text.toString().isNotEmpty() &&
-                        binding.tlPassword.editText?.text.toString().isNotEmpty()
-                )
-
-        binding.btnSignIn.setActive(isActive)
-        binding.btnSignUp.setActive(isActive)
-    }
+    private var currentSceneId = R.id.state_sign_up
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,18 +31,12 @@ class SignUpLogInFragment :
         binding.layoutActionSignUp.setOnClickListener { viewModel.onLogInToSignUpPressed() }
         binding.layoutActionSignIn.setOnClickListener { viewModel.onSignUpToLogInPressed() }
 
-        (binding.root as MotionLayout).addTransitionCompletedListener { currentId ->
-            currentSceneId = currentId
-            checkTextsBlock()
-            when (currentId) {
-                R.id.state_sign_in -> {
-                    binding.btnSignUp.isClickable = false
-                }
+        (binding.root as MotionLayout).addTransitionCompletedListener {
+            val curButton =
+                if (currentSceneId == R.id.state_sign_up) binding.btnSignUp
+                else binding.btnSignIn
 
-                R.id.state_sign_up -> {
-                    binding.btnSignIn.isClickable = false
-                }
-            }
+            curButton.isClickable = areButtonsActive()
         }
 
         initTextInputs()
@@ -104,12 +82,23 @@ class SignUpLogInFragment :
 
     private fun TextInputLayout.setButtonActiveListeners() {
         editText?.addTextChangedListener {
-            checkTextsBlock.invoke()
+            setCorrectButtonStates()
         }
     }
 
+    private fun setCorrectButtonStates() {
+        val isActive = areButtonsActive()
+
+        binding.btnSignIn.setActive(isActive)
+        binding.btnSignUp.setActive(isActive)
+    }
+
+    private fun areButtonsActive() = (
+            binding.tlEmail.editText?.text.toString().isNotEmpty() &&
+                    binding.tlPassword.editText?.text.toString().isNotEmpty()
+            )
+
     private fun Button.setActive(isActive: Boolean) {
-        // alpha = if (isActive) 1f else 0.5f
         isClickable = isActive
         val color =
             if (isActive)

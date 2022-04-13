@@ -36,8 +36,8 @@ class FavoritesFragment : AbstractCharactersFragment() {
 
     }
 
-    override fun bindListItem(binding: ItemCharacterBinding, data: Character) {
-        super.bindListItem(binding, data)
+    override fun bindListItem(pos: Int, binding: ItemCharacterBinding, data: Character) {
+        super.bindListItem(pos, binding, data)
 
         binding.ivHeart.visibility = View.GONE
     }

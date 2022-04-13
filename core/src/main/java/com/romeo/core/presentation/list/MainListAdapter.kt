@@ -19,7 +19,7 @@ import com.romeo.core.BR
  * */
 open class MainListAdapter<I : ListItem<I>>(
     private val itemLayoutId: Map<Int, Int>,
-    private val bind: ((ViewDataBinding, data: I) -> Unit)? = null
+    private val bind: ((Int, ViewDataBinding, data: I) -> Unit)? = null
 ) : ListAdapter<I, MainListAdapter<I>.BaseViewHolder>(BaseDiffUtilCallback<I>()) {
 
     inner class BaseViewHolder(
@@ -34,7 +34,7 @@ open class MainListAdapter<I : ListItem<I>>(
          * */
         fun bind(data: I) {
             binding.setVariable(BR.data, data)
-            bind?.invoke(binding, data)
+            bind?.invoke(adapterPosition, binding, data)
         }
     }
 

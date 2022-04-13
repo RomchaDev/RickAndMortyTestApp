@@ -38,4 +38,6 @@ dependencies {
     //Test
     testImplementation TestImpl.junit
     androidTestImplementation TestImpl.ext
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

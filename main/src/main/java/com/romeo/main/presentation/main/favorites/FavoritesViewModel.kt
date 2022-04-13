@@ -20,7 +20,7 @@ class FavoritesViewModel(
         runAsync {
             charactersRepository.getFavorites().collect { new ->
                 emitSuccess(CharactersViewState(new))
-                characters = new
+                characters = new.toMutableList()
             }
         }
     }
